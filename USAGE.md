@@ -6,6 +6,12 @@
 Four read-only tools, all keyed on a **US application number** (e.g. `15/643,719` or
 `15643719`). A publication or patent number is **not** an application number.
 
+The tools behave identically across every MCP client (Claude, Gemini CLI, Cursor, the
+OpenAI Agents SDK, …) — see [README → Connect it to an MCP client](README.md#connect-it-to-an-mcp-client)
+for per-client setup. The one client-dependent detail is chart rendering: the interactive
+HTML from `patent_family_chart` renders as an artifact in Claude, but is returned as HTML
+text elsewhere (use `format: "mermaid"` or `patent_family_tree` JSON on other clients).
+
 > Reminder — this builds the **US continuity** genealogy (a parent/child DAG within the
 > USPTO), **not** the INPADOC cross-office family. See the [README](README.md).
 

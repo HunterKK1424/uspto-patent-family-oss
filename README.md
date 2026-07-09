@@ -59,8 +59,19 @@ npm run build
 
 ## Connect it to an MCP client
 
-Add the server to your MCP client. For **Claude Desktop**, edit
-`claude_desktop_config.json`:
+The server speaks MCP over **stdio**, so it works with any client that launches a local
+MCP server — **Claude Desktop / Code, Gemini CLI, Cursor, Cline, Continue, Windsurf, Zed**,
+and the **OpenAI Agents SDK**. In every case you run `dist/index.js` with `node` and pass
+`USPTO_API_KEY` in the server's `env`.
+
+> **Which clients?** Anything that runs a *local* stdio MCP server works (most desktop AI
+> apps and AI code editors). The **hosted ChatGPT and Gemini web apps do not run local MCP
+> servers** — reaching those needs a remote (HTTP) deployment, which this repo does not
+> include.
+
+### Claude Desktop
+
+Edit `claude_desktop_config.json`:
 
 ```jsonc
 {
@@ -76,12 +87,61 @@ Add the server to your MCP client. For **Claude Desktop**, edit
 }
 ```
 
-Restart the client. Ask it something like *"show the US family tree for application
-15/643,719"* — it will call `patent_family_chart` and present the interactive HTML.
+### Gemini CLI
 
-> The server speaks MCP over **stdio**, so any stdio MCP client (Cline, Continue, etc.)
-> should work with the equivalent `command`/`args`/`env` config. It has been tested with
-> **Claude Desktop**; other clients are untested.
+Add the same block to `~/.gemini/settings.json` (a project-level `.gemini/settings.json`
+works too). Gemini CLI expands `$VARS`, so you can reference a shell variable instead of
+pasting the key inline:
+
+```jsonc
+{
+  "mcpServers": {
+    "uspto-patent-family": {
+      "command": "node",
+      "args": ["/absolute/path/to/uspto-patent-family-oss/dist/index.js"],
+      "env": { "USPTO_API_KEY": "$USPTO_API_KEY" }
+    }
+  }
+}
+```
+
+### Cursor / Cline / Continue / Windsurf / Zed
+
+These AI code editors use the **same `mcpServers` shape** — add the Claude Desktop block
+above to the editor's MCP config (e.g. Cursor's `~/.cursor/mcp.json`, or Cline's MCP
+settings panel): command `node`, args = the absolute path to `dist/index.js`, key in `env`.
+
+### OpenAI Agents SDK (build your own GPT agent)
+
+Spawn the server as a local subprocess:
+
+```python
+from agents import Agent, Runner
+from agents.mcp import MCPServerStdio
+
+async def main():
+    async with MCPServerStdio(params={
+        "command": "node",
+        "args": ["/absolute/path/to/uspto-patent-family-oss/dist/index.js"],
+        "env": {"USPTO_API_KEY": "your-odp-key-here"},
+    }) as server:
+        agent = Agent(
+            name="Patent assistant",
+            instructions="Use the USPTO tools to answer US patent-family questions.",
+            mcp_servers=[server],
+        )
+        result = await Runner.run(agent, "Show the US continuity for application 15/643,719.")
+        print(result.final_output)
+```
+
+Then restart the client (or run your agent) and ask something like *"show the US family
+tree for application 15/643,719."*
+
+> **The chart across clients.** The interactive HTML from `patent_family_chart` is designed
+> to render as a **Claude artifact**. Other clients receive it as HTML *text* (save it and
+> open in a browser) — so on non-Claude clients prefer `format: "mermaid"` for a quick
+> inline diagram, or `patent_family_tree` for raw JSON. The `patent_continuity` /
+> `patent_family_tree` data tools behave identically on every client.
 
 ### Try it without a client (CLI)
 
