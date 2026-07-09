@@ -2,7 +2,7 @@
 // Copyright 2026 Chun-Yu Yen (Hunter Yen)
 //
 // Central configuration, read from environment variables.
-// This open-source build talks to ONE provider: the USPTO Open Data Portal (ODP).
+// This source-available build talks to ONE provider: the USPTO Open Data Portal (ODP).
 // The key is optional so the server can boot & list tools even before the user
 // has registered for the free API credential.
 

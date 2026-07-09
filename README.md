@@ -29,6 +29,9 @@ applicant / lineal‑only / generation depth), a filing‑date **year‑axis tim
 copendency red‑flag heuristics, light/dark toggle, zoom/pan, hover detail, and built‑in
 PNG/SVG download.
 
+Full parameters, outputs, and example prompts for each tool are in [USAGE.md](USAGE.md);
+version history is in [CHANGELOG.md](CHANGELOG.md).
+
 ## Requirements
 
 - **Node.js ≥ 18** — runs the MCP server.
@@ -75,6 +78,10 @@ Add the server to your MCP client. For **Claude Desktop**, edit
 
 Restart the client. Ask it something like *"show the US family tree for application
 15/643,719"* — it will call `patent_family_chart` and present the interactive HTML.
+
+> The server speaks MCP over **stdio**, so any stdio MCP client (Cline, Continue, etc.)
+> should work with the equivalent `command`/`args`/`env` config. It has been tested with
+> **Claude Desktop**; other clients are untested.
 
 ### Try it without a client (CLI)
 
