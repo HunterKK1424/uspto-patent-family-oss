@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 150" width="760" height="150" role="img" aria-label="uspto-patent-family">
+  <defs>
+    <linearGradient id="node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#0D9488"/>
+    </linearGradient>
+    <style>
+      /* teal wordmark reads clearly on both light and dark backgrounds without
+         relying on prefers-color-scheme (which some img-referenced SVG renderers strip) */
+      .title { font: 700 36px -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #0D9488; }
+      .tag   { font: 400 15.5px -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #64748B; letter-spacing: .2px; }
+      .edge  { stroke: #5EA3A0; stroke-width: 2.4; fill: none; }
+    </style>
+  </defs>
+
+  <!-- family-tree (continuity DAG) glyph -->
+  <g transform="translate(28,18)">
+    <path class="edge" d="M62 24 L34 62"/>
+    <path class="edge" d="M62 24 L96 62"/>
+    <path class="edge" d="M34 62 L20 104"/>
+    <path class="edge" d="M34 62 L62 104"/>
+    <path class="edge" d="M96 62 L62 104"/>
+    <circle cx="62"  cy="18"  r="10" fill="url(#node)"/>
+    <circle cx="34"  cy="62"  r="10" fill="url(#node)"/>
+    <circle cx="96"  cy="62"  r="10" fill="url(#node)"/>
+    <circle cx="20"  cy="104" r="10" fill="url(#node)"/>
+    <circle cx="62"  cy="104" r="10" fill="url(#node)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text class="title" x="176" y="66">uspto-patent-family</text>
+  <text class="tag"   x="178" y="98">US patent family trees · continuity genealogy, rendered</text>
+</svg>

@@ -1,14 +1,34 @@
-# uspto-patent-family
+<div align="center">
 
-An [MCP](https://modelcontextprotocol.io) server that builds the **US domestic patent
-family tree** — the *continuity* genealogy (continuation / continuation‑in‑part /
-division / provisional, plus reissue & reexam links) — from the **USPTO Open Data
-Portal (ODP)**, and renders it as an interactive HTML chart or a Mermaid diagram.
+<img src="docs/assets/logo.svg" alt="uspto-patent-family" width="540">
+
+### US patent family trees — the *continuity* genealogy, from the USPTO, as interactive charts
+
+**English** | [中文](README.zh.md)
+
+[![License](https://img.shields.io/badge/license-PolyForm%20NC%201.0.0-3D7BFF.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%E2%89%A518-3C873A.svg)](package.json)
+[![Python](https://img.shields.io/badge/python-3-3776AB.svg)](#requirements)
+[![CI](https://github.com/HunterKK1424/uspto-patent-family-oss/actions/workflows/ci.yml/badge.svg)](https://github.com/HunterKK1424/uspto-patent-family-oss/actions/workflows/ci.yml)
+[![MCP](https://img.shields.io/badge/MCP-stdio-14B8A6.svg)](#connect-it-to-an-mcp-client)
+
+[**Tools**](#what-you-get) · [**Install**](#install) · [**Setup**](#connect-it-to-an-mcp-client) · [**Get a key**](#get-a-uspto-odp-api-key) · [**Sample**](samples/sample-family-tree.html)
+
+<img src="docs/assets/sample-tree.svg" alt="Example family tree — continuation / CIP / provisional, with copendency red-flag heuristics" width="600">
+
+<sub><i>Example output rendered from synthetic data — no API key needed.</i></sub>
+
+</div>
 
 > ### ⚠️ This is *continuity*, not INPADOC
 > This tool draws the **US prosecution family** (a parent/child DAG within the USPTO).
 > It is **not** the INPADOC cross‑office family (the same invention filed in other
 > countries). They are different things — do not confuse one for the other.
+
+An [MCP](https://modelcontextprotocol.io) server that builds the **US domestic patent
+family tree** — the *continuity* genealogy (continuation / continuation‑in‑part /
+division / provisional, plus reissue & reexam links) — from the **USPTO Open Data
+Portal (ODP)**, and renders it as an interactive HTML chart or a Mermaid diagram.
 
 **See it:** open [`samples/sample-family-tree.html`](samples/sample-family-tree.html) in a
 browser for a live, self-contained example rendered from synthetic data (no API key needed).
