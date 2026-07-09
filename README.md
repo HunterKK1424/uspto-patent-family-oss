@@ -191,10 +191,36 @@ The chart UI and text output default to **English**. To switch:
 
 ## Disclaimer
 
-This tool is provided for technical reference only. Its data comes from public USPTO
-sources and may be incomplete or out of date. **It does not constitute legal advice** and
-must not be relied upon for any determination of patent validity, priority, or continuity.
-This is an **unofficial** tool and is **not affiliated with or endorsed by the USPTO**.
+**No warranty.** THIS SOFTWARE AND ITS OUTPUT ARE PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. You rely on its output
+entirely at your own risk. See the [LICENSE](LICENSE) for the full limitation of liability.
+
+**Not legal advice.** This tool is provided for technical reference only. Nothing it
+produces is legal advice, and using it does **not** create an attorney–client relationship
+with the author or any firm. It is not a substitute for professional judgment or for
+independent verification. For any question of patent priority, validity, term, or
+continuity, consult a licensed patent practitioner.
+
+**Data may be incomplete or out of date.** The data comes from the public USPTO Open Data
+Portal and may contain errors, omissions, or delays. Always confirm against the official
+USPTO record (Patent Center / IFW) before relying on any result.
+
+**"Continuity" here is *as recorded* — not a perfected legal benefit.** The chart shows
+parent/child relationships as reported by the USPTO. It does **not** verify a claim's
+entitlement to an earlier filing date. Under 35 U.S.C. § 120, a benefit claim must
+independently satisfy — for *each* application in the chain — (1) continuity of
+written-description support (§ 112(a)), (2) continuity of inventorship, (3) copendency, and
+(4) a specific reference to each prior application; these cannot be inherited, and a
+recorded reference does not by itself perfect benefit. A break anywhere in the chain (e.g.
+a deleted benefit claim in an intermediate application, or a one-day copendency lapse) can
+defeat benefit downstream, and new matter in a continuation-in-part may not receive the
+parent's filing date. **Do not use this tool as the basis for any determination of
+priority, effective filing date, patent term, validity, or freedom to operate** — each
+case must be checked on its own record.
+
+**Unofficial.** This is an independent tool and is **not affiliated with, endorsed by, or
+sponsored by the United States Patent and Trademark Office.**
 
 ## License
 
