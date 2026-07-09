@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+# Copyright 2026 Chun-Yu Yen (Hunter Yen)
 """Lightweight runtime validation of a family_raw.json payload.
 
 The contract (docs/family_raw.schema.json) is the architecture's linchpin but had

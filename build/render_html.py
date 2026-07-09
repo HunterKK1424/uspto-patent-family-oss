@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+# Copyright 2026 Chun-Yu Yen (Hunter Yen)
 """Layer 3 (HTML) — deterministic family_raw.json → self-contained INTERACTIVE HTML.
 
 Phase B: client-side app — embed analysed data + a JS app that filters /

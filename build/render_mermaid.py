@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+# Copyright 2026 Chun-Yu Yen (Hunter Yen)
 """Layer 3 — deterministic build & render (Mermaid).
 
 輸入 family_raw.json（§docs/family_raw.schema.json），輸出 Mermaid 家族圖 + 文字摘要。

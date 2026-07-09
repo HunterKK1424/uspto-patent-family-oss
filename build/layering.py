@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+# Copyright 2026 Chun-Yu Yen (Hunter Yen)
 """Shared topological layering for the family DAG (single source of truth).
 
 Both renderers use this so their notion of "generation" can never diverge.
