@@ -100,9 +100,16 @@ The chart UI and text output default to **English**. To switch:
 |----------|---------|---------|
 | `USPTO_API_KEY` | — | **Required.** Your ODP key. |
 | `PATENT_FAMILY_LANG` | `en` | `en` or `zh` — default UI language. |
-| `PATENT_HTTP_TIMEOUT_MS` | `30000` | HTTP timeout. |
-| `PATENT_ODP_CACHE` | on | Set `0` to disable the 7‑day disk cache. |
+| `PATENT_HTTP_TIMEOUT_MS` | `30000` | HTTP request timeout (ms). |
+| `PATENT_ODP_RETRY_429` | off | Set `1` to retry **once** after a ≥5 s wait on an HTTP 429. Off by default — USPTO discourages auto‑retry. |
+| `PATENT_ODP_CACHE` | on | Set `0` to disable the disk cache. |
+| `PATENT_ODP_CACHE_DIR` | `<tmp>/patent-mcp-cache` | Cache directory. |
+| `PATENT_ODP_CACHE_TTL_MS` | 7 days | Cache freshness window (ms). |
+| `PATENT_FAMILY_TIME_BUDGET_MS` | `100000` | Wall‑clock budget for a family walk; on timeout it returns partial results. |
 | `PATENT_PYTHON` | `python3` | Python executable for chart rendering. |
+| `PATENT_FAMILY_RENDER_DIR` | bundled `build/` | Override the directory holding the Python renderers. |
+| `PATENT_ESBUILD` | — | Path to `esbuild` for stronger HTML JS minification (falls back to a zero‑dependency minifier). |
+| `PATENT_COPYRIGHT_HOLDER` / `PATENT_COPYRIGHT_YEAR` | author / `2026` | Override the credit line embedded in rendered charts. |
 
 ## Limitations (by design)
 

@@ -1,12 +1,12 @@
 {
-  "root": "12/300,020",
+  "root": "99/000,020",
   "generatedBy": "fixture",
   "truncated": false,
-  "_note": "SYNTHETIC test data — fictional applicants, titles and numbers. Not real patents.",
+  "_note": "SYNTHETIC test data — fictional applicants/titles and deliberately out-of-range series-99 application numbers. Not real patents.",
   "nodes": [
     {
-      "applicationNumberText": "12/300,010",
-      "patentNumber": "US7000001",
+      "applicationNumberText": "99/000,010",
+      "patentNumber": "US9990001",
       "inventionTitle": "Example base imaging apparatus",
       "filingDate": "2010-01-05",
       "grantDate": "2012-06-05",
@@ -17,8 +17,8 @@
       "_depth": -1
     },
     {
-      "applicationNumberText": "12/300,020",
-      "patentNumber": "US7500001",
+      "applicationNumberText": "99/000,020",
+      "patentNumber": "US9990002",
       "inventionTitle": "Example imaging apparatus (continuation)",
       "filingDate": "2010-08-10",
       "grantDate": "2013-02-05",
@@ -29,8 +29,8 @@
       "_depth": 0
     },
     {
-      "applicationNumberText": "12/300,030",
-      "patentNumber": "US7900001",
+      "applicationNumberText": "99/000,030",
+      "patentNumber": "US9990003",
       "inventionTitle": "Example imaging apparatus (later continuation)",
       "filingDate": "2013-01-15",
       "grantDate": "2015-04-07",
@@ -42,7 +42,7 @@
     }
   ],
   "edges": [
-    { "from": "12/300,010", "to": "12/300,020", "relationshipType": "CON", "rawTypeCode": "Continuation" },
-    { "from": "12/300,020", "to": "12/300,030", "relationshipType": "CON", "rawTypeCode": "Continuation" }
+    { "from": "99/000,010", "to": "99/000,020", "relationshipType": "CON", "rawTypeCode": "Continuation" },
+    { "from": "99/000,020", "to": "99/000,030", "relationshipType": "CON", "rawTypeCode": "Continuation" }
   ]
 }

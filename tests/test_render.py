@@ -63,7 +63,7 @@ class RenderSimpleChain(unittest.TestCase):
 
     def test_direction_and_nodes(self):
         self.assertTrue(self.out.startswith("flowchart LR"))
-        for app in ("12/300,010", "12/300,020", "12/300,030"):
+        for app in ("99/000,010", "99/000,020", "99/000,030"):
             self.assertIn(R.node_id(app, {}), self.out)
 
     def test_edges_labeled_continuation(self):
@@ -208,10 +208,10 @@ class HtmlLayering(unittest.TestCase):
                                 f"edge {e['from']}→{e['to']} must go downward")
 
     def test_provisional_parent_above_root(self):
-        # cip_fork: 61/100,010 是 root(12/300,020) 的 provisional 母案 → 世代須為負
+        # cip_fork: 99/000,001 是 root(99/000,020) 的 provisional 母案 → 世代須為負
         data = load("cip_fork.json")
         layer, _ = self.H.assign_layers(data["nodes"], data["edges"], data["root"])
-        self.assertLess(layer["61/100,010"], 0)
+        self.assertLess(layer["99/000,001"], 0)
 
     def test_build_html_self_contained(self):
         data = load("cip_fork.json")

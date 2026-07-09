@@ -1,11 +1,11 @@
 {
-  "root": "12/300,020",
+  "root": "99/000,020",
   "generatedBy": "fixture",
   "truncated": false,
-  "_note": "SYNTHETIC test data — fictional applicants, titles and numbers. Not real patents.",
+  "_note": "SYNTHETIC test data — fictional applicants/titles and deliberately out-of-range series-99 application numbers. Not real patents.",
   "nodes": [
     {
-      "applicationNumberText": "61/100,010",
+      "applicationNumberText": "99/000,001",
       "patentNumber": null,
       "inventionTitle": "Example provisional: sensing concept",
       "filingDate": "2010-02-06",
@@ -17,8 +17,8 @@
       "_depth": -1
     },
     {
-      "applicationNumberText": "12/300,010",
-      "patentNumber": "US7000001",
+      "applicationNumberText": "99/000,010",
+      "patentNumber": "US9990001",
       "inventionTitle": "Example baseline apparatus \"reference\" design",
       "filingDate": "2010-01-05",
       "grantDate": "2012-06-05",
@@ -29,8 +29,8 @@
       "_depth": -1
     },
     {
-      "applicationNumberText": "12/300,020",
-      "patentNumber": "US7500001",
+      "applicationNumberText": "99/000,020",
+      "patentNumber": "US9990002",
       "inventionTitle": "Example sensing apparatus",
       "filingDate": "2010-08-10",
       "grantDate": "2013-02-05",
@@ -41,7 +41,7 @@
       "_depth": 0
     },
     {
-      "applicationNumberText": "12/400,000",
+      "applicationNumberText": "99/000,040",
       "patentNumber": null,
       "inventionTitle": "Example abandoned variant (never granted)",
       "filingDate": "2010-09-01",
@@ -53,7 +53,7 @@
       "_depth": 0
     },
     {
-      "applicationNumberText": "13/500,000",
+      "applicationNumberText": "99/000,050",
       "patentNumber": null,
       "inventionTitle": "Example enhanced apparatus (adds new matter)",
       "filingDate": "2013-08-01",
@@ -65,7 +65,7 @@
       "_depth": 1
     },
     {
-      "applicationNumberText": "14/600,000",
+      "applicationNumberText": "99/000,060",
       "patentNumber": null,
       "inventionTitle": null,
       "filingDate": null,
@@ -77,14 +77,14 @@
     }
   ],
   "edges": [
-    { "from": "61/100,010", "to": "12/300,020", "relationshipType": "PRO", "rawTypeCode": "Provisional application" },
-    { "from": "12/300,010", "to": "12/300,020", "relationshipType": "CON", "rawTypeCode": "Continuation" },
-    { "from": "12/300,020", "to": "13/500,000", "relationshipType": "CIP", "rawTypeCode": "Continuation in part" },
-    { "from": "12/400,000", "to": "13/500,000", "relationshipType": "CIP", "rawTypeCode": "Continuation in part" },
-    { "from": "13/500,000", "to": "14/600,000", "relationshipType": "CON", "rawTypeCode": "Continuation" }
+    { "from": "99/000,001", "to": "99/000,020", "relationshipType": "PRO", "rawTypeCode": "Provisional application" },
+    { "from": "99/000,010", "to": "99/000,020", "relationshipType": "CON", "rawTypeCode": "Continuation" },
+    { "from": "99/000,020", "to": "99/000,050", "relationshipType": "CIP", "rawTypeCode": "Continuation in part" },
+    { "from": "99/000,040", "to": "99/000,050", "relationshipType": "CIP", "rawTypeCode": "Continuation in part" },
+    { "from": "99/000,050", "to": "99/000,060", "relationshipType": "CON", "rawTypeCode": "Continuation" }
   ],
   "overlay": {
-    "12/300,020": {
+    "99/000,020": {
       "inpadocFamilyId": "99000001",
       "members": ["EP9000001A1", "JP9000001B2", "WO2011000001A1", "IL900001B"]
     }

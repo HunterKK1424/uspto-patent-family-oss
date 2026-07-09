@@ -14,7 +14,9 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "start": "node dist/index.js",
-    "dev": "tsc && node dist/index.js"
+    "dev": "tsc && node dist/index.js",
+    "test": "npm run build && node --test dist/test.js",
+    "test:py": "python3 tests/test_render.py"
   },
   "engines": {
     "node": ">=18"
