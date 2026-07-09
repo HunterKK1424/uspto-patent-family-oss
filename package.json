@@ -1,0 +1,32 @@
+{
+  "name": "uspto-patent-family",
+  "version": "0.1.0",
+  "description": "MCP server that builds the US DOMESTIC patent family tree (continuity: continuation / CIP / division / provisional) from the USPTO Open Data Portal, and renders it as Mermaid or interactive HTML. NOT the INPADOC cross-office family.",
+  "type": "module",
+  "bin": {
+    "uspto-patent-family": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Chun-Yu Yen (Hunter Yen)"
+}

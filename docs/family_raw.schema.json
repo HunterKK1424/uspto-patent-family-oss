@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opes.local/uspto-patent-family/family_raw.schema.json",
+  "title": "family_raw.json",
+  "description": "Provider (Layer 1) 與 build/render (Layer 3) 之間的唯一介面。Provider A/B 必須產出 schema 相同的檔案；Layer 3 只認這份 schema。",
+  "type": "object",
+  "required": ["root", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "root": {
+      "type": "string",
+      "description": "root application number（正規化後的節點鍵）"
+    },
+    "generatedBy": {
+      "type": "string",
+      "enum": ["provider-a", "provider-b", "fixture"],
+      "description": "追溯用，不影響渲染"
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["full", "lineal"],
+      "description": "full = 整個連通家族；lineal = 只 root 的祖先鏈+子孫（旁系排除）"
+    },
+    "truncated": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否因上限/速率/時間而未抓完整"
+    },
+    "truncationReason": {
+      "type": "string",
+      "enum": ["node-cap", "depth-cap", "rate-limit", "time-budget"],
+      "description": "truncated 時的最主要成因"
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/edge" }
+    },
+    "overlay": {
+      "type": "object",
+      "description": "Layer 2 選配：appNo -> INPADOC 跨國對應案（來自 patent_family）",
+      "additionalProperties": { "$ref": "#/definitions/overlayEntry" }
+    }
+  },
+  "definitions": {
+    "node": {
+      "type": "object",
+      "required": ["applicationNumberText", "status", "_fetched"],
+      "additionalProperties": true,
+      "properties": {
+        "applicationNumberText": { "type": "string", "description": "主鍵" },
+        "patentNumber": { "type": ["string", "null"] },
+        "inventionTitle": { "type": ["string", "null"] },
+        "filingDate": { "type": ["string", "null"], "description": "YYYY-MM-DD" },
+        "grantDate": { "type": ["string", "null"] },
+        "status": {
+          "type": "string",
+          "enum": ["granted", "pending", "abandoned", "provisional", "unknown"],
+          "description": "粗分類，僅供上色"
+        },
+        "statusText": {
+          "type": ["string", "null"],
+          "description": "ODP 原始法律狀態文字（保留細節，供 tooltip；不因 status 粗分類而遺失）"
+        },
+        "statusDate": {
+          "type": ["string", "null"],
+          "description": "現狀生效日（ODP applicationStatusDate）；copendency 紅旗用（母案 pendency 結束日）"
+        },
+        "lineage": {
+          "type": ["string", "null"],
+          "enum": ["root", "ancestor", "descendant", "collateral", null],
+          "description": "相對 root 的直系分類：ancestor(優先權鏈上) / descendant / collateral(旁系)"
+        },
+        "applicant": { "type": ["string", "null"] },
+        "assignee": { "type": ["string", "null"] },
+        "kind": {
+          "type": ["string", "null"],
+          "description": "utility / provisional / pct / national-stage / reissue …"
+        },
+        "inpadocFamilyId": { "type": ["string", "null"] },
+        "_fetched": {
+          "type": "boolean",
+          "description": "false = 邊界未展開節點（碰上限或抓取失敗）"
+        },
+        "_depth": {
+          "type": "integer",
+          "description": "BFS 跳數（初階近似）；renderer 以拓撲分層重算精確世代"
+        },
+        "_omitted": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "因總節點上限而未展開的鄰居數（以「+N」標示）"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["from", "to", "relationshipType"],
+      "additionalProperties": false,
+      "properties": {
+        "from": { "type": "string", "description": "parent application number" },
+        "to": { "type": "string", "description": "child application number" },
+        "relationshipType": {
+          "type": "string",
+          "description": "正規化短碼：CON / CIP / DIV / PRO / 371 / REISSUE / UNKNOWN"
+        },
+        "rawTypeCode": {
+          "type": ["string", "null"],
+          "description": "ODP claimParentageTypeCode 原文，備查"
+        }
+      }
+    },
+    "overlayEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "inpadocFamilyId": { "type": ["string", "null"] },
+        "members": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

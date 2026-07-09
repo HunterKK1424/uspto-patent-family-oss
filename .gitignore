@@ -1,0 +1,21 @@
+# dependencies & build output
+node_modules/
+dist/
+
+# secrets & local env
+.env
+
+# python
+__pycache__/
+*.pyc
+
+# os / editor
+.DS_Store
+*.tmp
+*.log
+
+# runtime artifacts
+family_raw.json
+
+# internal planning doc — MUST NOT be published (contains private paths / strategy)
+OPEN-SOURCE-PLAN.md

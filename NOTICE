@@ -1,0 +1,28 @@
+uspto-patent-family
+Copyright 2026 Chun-Yu Yen (Hunter Yen)
+
+This software is licensed under the PolyForm Noncommercial License 1.0.0
+(see the LICENSE file). It is source-available and free for any NONCOMMERCIAL
+use. It is NOT an OSI-approved "open source" license.
+
+COMMERCIAL USE
+--------------
+Commercial use requires a separate license from the copyright holder.
+Contact: hunterip0305@gmail.com
+
+THIRD-PARTY COMPONENTS
+----------------------
+This project depends on third-party packages distributed under their own
+licenses, including:
+
+  - @modelcontextprotocol/sdk  — MIT License
+  - zod                        — MIT License
+
+Their licenses are compatible with noncommercial redistribution and apply to
+those components only. See each package's own license text (under node_modules
+after installation) for details.
+
+DISCLAIMER
+----------
+This tool is for technical reference only, does not constitute legal advice,
+and is unofficial — not affiliated with or endorsed by the USPTO.
