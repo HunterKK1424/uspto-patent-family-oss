@@ -94,6 +94,12 @@ and the **OpenAI Agents SDK**. In every case you run `dist/index.js` with `node`
 > servers** — reaching those needs a remote (HTTP) deployment, which this repo does not
 > include.
 
+**Verified:** the server has been connected and exercised via **Claude Desktop**, the
+**OpenAI Agents SDK** (`MCPServerStdio`), **Gemini CLI**, and the official MCP SDK client
+in both TypeScript and Python (connect → list tools → call a tool). **Cursor / Cline /
+Continue / Windsurf / Zed** are not individually tested but speak the same stdio MCP
+protocol, so the same config applies.
+
 ### Claude Desktop
 
 Edit `claude_desktop_config.json`:
@@ -129,6 +135,11 @@ pasting the key inline:
   }
 }
 ```
+
+> **Folder trust:** Gemini CLI disables MCP servers in folders it doesn't trust. If
+> `gemini mcp list` shows the server as *Disabled*, trust the workspace (accept the trust
+> prompt when Gemini asks, or use `/trust`); once trusted it shows **Connected**. Verify
+> with `gemini mcp list`.
 
 ### Cursor / Cline / Continue / Windsurf / Zed
 

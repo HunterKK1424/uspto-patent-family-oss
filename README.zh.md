@@ -83,6 +83,11 @@ npm run build
 > **網頁版 ChatGPT 與 Gemini App 不會跑本機 MCP 伺服器** —— 要接那些需要遠端（HTTP）部署，
 > 本 repo 未包含。
 
+**已驗證：** 本伺服器已透過 **Claude Desktop**、**OpenAI Agents SDK**（`MCPServerStdio`）、
+**Gemini CLI**，以及官方 MCP SDK client（TypeScript 與 Python 兩種）實際連線並操作
+（連線 → 列出工具 → 呼叫工具）。**Cursor / Cline / Continue / Windsurf / Zed** 未逐一實測，
+但使用相同的 stdio MCP 協定，設定方式相同。
+
 ### Claude Desktop
 
 編輯 `claude_desktop_config.json`：
@@ -118,7 +123,9 @@ npm run build
 }
 ```
 
-### Cursor / Cline / Continue / Windsurf / Zed
+> **資料夾信任：** Gemini CLI 會停用「未受信任資料夾」中的 MCP 伺服器。若 `gemini mcp list`
+> 顯示為 *Disabled*，請信任該工作區（Gemini 詢問時同意信任，或用 `/trust`）；信任後會顯示
+> **Connected**。可用 `gemini mcp list` 確認。
 
 這些 AI 程式編輯器用**相同的 `mcpServers` 結構** —— 把上面的 Claude Desktop 區塊加進編輯器的
 MCP 設定即可（如 Cursor 的 `~/.cursor/mcp.json`、或 Cline 的 MCP 設定面板）：command 為 `node`、
