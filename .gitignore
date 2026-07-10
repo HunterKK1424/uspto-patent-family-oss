@@ -17,5 +17,7 @@ __pycache__/
 # runtime artifacts
 family_raw.json
 
-# internal planning doc — MUST NOT be published (contains private paths / strategy)
+# internal-only docs — MUST NOT be published (contain private terms / audit history).
+# These stay untracked so they can never leak via git history when the repo goes public.
 OPEN-SOURCE-PLAN.md
+AUDIT-REGISTER.md
