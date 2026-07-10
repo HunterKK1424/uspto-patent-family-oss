@@ -49,6 +49,11 @@ applicant / lineal‑only / generation depth), a filing‑date **year‑axis tim
 copendency red‑flag heuristics, light/dark toggle, zoom/pan, hover detail, and built‑in
 PNG/SVG download.
 
+<div align="center">
+<img src="docs/assets/demo.gif" alt="Interactive chart: re-layout by generation or filing year, and prune by depth" width="600">
+<br><sub><i>Interactive: re-layout by generation or filing‑year, prune by depth — synthetic data.</i></sub>
+</div>
+
 Full parameters, outputs, and example prompts for each tool are in [USAGE.md](USAGE.md);
 version history is in [CHANGELOG.md](CHANGELOG.md).
 
