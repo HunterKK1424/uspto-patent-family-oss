@@ -185,6 +185,22 @@ def xml_esc(s) -> str:
             .replace(">", "&gt;").replace('"', "&quot;"))
 
 
+def js_embed(obj) -> str:
+    """Serialize a value for safe inlining inside an HTML <script> block.
+
+    json.dumps does NOT escape '<', so a data field containing the literal
+    '</script>' (or '<!--') would close the script tag early — a stored-XSS
+    vector, since node titles/applicants come from third-party USPTO data.
+    Escaping '<' as the JS unicode escape \\u003c is inert to JSON.parse and to
+    the JS runtime while making tag-breakout impossible; '\\u2028'/'\\u2029'
+    (JS line terminators, invalid in string literals) are handled too.
+    """
+    return (json.dumps(obj, ensure_ascii=False)
+            .replace("<", "\\u003c")
+            .replace(chr(0x2028), "\\u2028")
+            .replace(chr(0x2029), "\\u2029"))
+
+
 def svg_style() -> str:
     """Self-contained LIGHT theme inside the <svg> so downloads carry their colours."""
     out = [
@@ -575,10 +591,10 @@ def build_html(data: dict, title: str, minify: bool = False, lang: str = "en") -
         f"<p style=\"margin-top:5px;opacity:.85\">{xml_esc(copyright_line)}</p>"
         "</div>"
         "</div>"
-        f"<script>window.__DATA__={json.dumps(d, ensure_ascii=False)};"
-        f"window.__SVGSTYLE__={json.dumps(svg_style(), ensure_ascii=False)};"
-        f"window.__I18N__={json.dumps(s, ensure_ascii=False)};"
-        f"window.__COPYRIGHT__={json.dumps(copyright_line, ensure_ascii=False)};</script>"
+        f"<script>window.__DATA__={js_embed(d)};"
+        f"window.__SVGSTYLE__={js_embed(svg_style())};"
+        f"window.__I18N__={js_embed(s)};"
+        f"window.__COPYRIGHT__={js_embed(copyright_line)};</script>"
         f"<script>{js}</script></body></html>"
     )
 

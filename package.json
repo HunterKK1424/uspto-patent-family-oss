@@ -2,7 +2,16 @@
   "name": "uspto-patent-family",
   "version": "0.1.0",
   "description": "MCP server that builds the US DOMESTIC patent family tree (continuity: continuation / CIP / division / provisional) from the USPTO Open Data Portal, and renders it as Mermaid or interactive HTML. NOT the INPADOC cross-office family.",
+  "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HunterKK1424/uspto-patent-family-oss.git"
+  },
+  "homepage": "https://github.com/HunterKK1424/uspto-patent-family-oss#readme",
+  "bugs": {
+    "url": "https://github.com/HunterKK1424/uspto-patent-family-oss/issues"
+  },
   "bin": {
     "uspto-patent-family": "dist/index.js"
   },

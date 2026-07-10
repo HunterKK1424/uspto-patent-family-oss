@@ -132,10 +132,16 @@ def node_id(app_no: str, used: dict[str, str]) -> str:
 
 
 def esc(text: str) -> str:
-    """轉義會炸掉 Mermaid label 的字元（"、#），保留 <br/> 為換行。"""
+    """Escape characters that break a Mermaid label (& " # < >).
+
+    `<br/>` line breaks are added by the callers AFTER escaping (never passed
+    through here), so escaping `<`/`>` is safe and prevents third-party data
+    (titles/applicants from USPTO) from injecting markup into a rendered label.
+    """
     if text is None:
         return ""
-    return str(text).replace("&", "&amp;").replace('"', "&quot;").replace("#", "#35;")
+    return (str(text).replace("&", "&amp;").replace('"', "&quot;")
+            .replace("#", "#35;").replace("<", "&lt;").replace(">", "&gt;"))
 
 
 def trunc(text: str | None, n: int) -> str:

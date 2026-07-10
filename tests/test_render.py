@@ -57,6 +57,44 @@ class MermaidSafety(unittest.TestCase):
         self.assertIn("&quot;", label)
         self.assertIn("#35;", label)
 
+    def test_label_escapes_angle_brackets(self):
+        # Third-party title with markup must not survive into a mermaid label.
+        node = {"applicationNumberText": "X", "status": "pending", "_fetched": True,
+                "inventionTitle": "a <script>x</script> b"}
+        label = R.node_label(node, is_root=False, max_title=99)
+        self.assertNotIn("<script>", label)
+        self.assertIn("&lt;", label)
+        self.assertIn("&gt;", label)
+
+
+class HtmlXssSafety(unittest.TestCase):
+    """render_html embeds third-party node data into a <script> block; a title
+    containing '</script>' must not be able to close the tag (stored XSS)."""
+
+    def _render(self):
+        import render_html as H
+        data = {"root": "99/000,001", "nodes": [{
+            "applicationNumberText": "99/000,001", "status": "granted", "_fetched": True,
+            "inventionTitle": "Widget </script><img src=x onerror=alert(1)> device",
+            "applicant": "Evil </script> Corp"}], "edges": []}
+        return H.build_html(data, title="t", lang="en")
+
+    def test_no_script_breakout_from_data(self):
+        html = self._render()
+        # The malicious payload must appear only in escaped form.
+        self.assertNotIn("<img src=x onerror", html)
+        self.assertNotIn("</script><img", html)
+        # Only '<' needs escaping to prevent tag-breakout ('>' alone is inert).
+        self.assertIn("\\u003c/script>", html)
+
+    def test_embedded_json_still_valid(self):
+        import re
+        html = self._render()
+        m = re.search(r"window\.__DATA__=(.*?);window\.__SVGSTYLE__", html)
+        self.assertIsNotNone(m)
+        # \u-escapes are inert to JSON.parse: decoding them yields valid JSON.
+        json.loads(m.group(1).encode().decode("unicode_escape"))
+
 
 class RenderSimpleChain(unittest.TestCase):
     def setUp(self):
